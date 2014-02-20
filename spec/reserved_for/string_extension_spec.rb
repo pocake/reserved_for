@@ -28,6 +28,5 @@ describe "String" do
     it 'alice is reserved_for_usernames' do
       expect('alice'.reserved_for_usernames?).to be true
     end
-
   end
 end
