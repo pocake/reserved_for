@@ -40,9 +40,7 @@ module ReservedFor
     def method_missing(name, *args)
       case name.to_s
       when /(.*)=$/
-        key = $1
-        key.downcase! unless options[:case_sensitive]
-        @reserved_list_map[key.to_sym] = Set.new(args.flatten)
+        @reserved_list_map[$1.to_sym] = Set.new(args.flatten)
       else
         @reserved_list_map[name.to_sym]
       end
