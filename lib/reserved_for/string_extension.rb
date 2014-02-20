@@ -8,6 +8,7 @@ end
 
 class String
   def reserved_for_any?
+    true
   end
   alias :reserved_for? :reserved_for_any?
 
