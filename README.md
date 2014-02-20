@@ -2,6 +2,8 @@
 
 Make word reserved
 
+[![Code Climate](https://codeclimate.com/github/pocake/reserved_for.png)](https://codeclimate.com/github/pocake/reserved_for)
+
 ## Installation
 
 Add this line to your application's Gemfile:
