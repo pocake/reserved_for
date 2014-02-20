@@ -3,6 +3,7 @@
 Make word reserved
 
 [![Build Status](https://travis-ci.org/pocake/reserved_for.png?branch=master)](https://travis-ci.org/pocake/reserved_for)
+[![Coverage Status](https://coveralls.io/repos/pocake/reserved_for/badge.png)](https://coveralls.io/r/pocake/reserved_for)
 [![Code Climate](https://codeclimate.com/github/pocake/reserved_for.png)](https://codeclimate.com/github/pocake/reserved_for)
 
 ## Installation
