@@ -11,13 +11,13 @@ describe ReservedFor do
 
   describe '.[definded_list]' do
     it 'should return set of reserved word' do
-      expect(ReservedFor.usernames).to eq Set.new(%w(alice bob charlie))
+      expect(ReservedFor.usernames).to eq Set.new(%w(alice bob charlie david))
     end
   end
 
   describe '.[undefined_list]' do
-    it 'should return empty set' do
-      expect(ReservedFor.undefined_list_foo).to be_empty
+    it 'should return nil' do
+      expect(ReservedFor.undefined_list_foo).to be_nil
     end
   end
 
