@@ -82,14 +82,17 @@ ReservedFor.any(whitelist: false).include?('b')       #=> true
 
 ```
 
-### Configure
+### Configure(experimental)
 ```ruby
 require 'reserved_for'
 
 ReservedFor.configure do |config|
   # use default-list(only .usernames for now) or not
   config.use_default_reserved_list = false # default: true
+
+  # this option require 'active_support'
   config.check_plural              = true  # default: false
+
   config.case_sensitive            = true  # default: false
 end
 
