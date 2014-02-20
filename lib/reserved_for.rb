@@ -9,17 +9,17 @@ module ReservedFor
 
     def reset!
       clear_all!
-      @reserved_list_map[:usernames] = default_usernames
+      @reserved_list_map[:usernames] = _default_usernames
     end
 
-    def configure(&block)
-      options = OpenStruct.new
-      result  = block.call(options)
-      require 'pry'; binding.pry
+    def configure(options = {}, &block)
+      config = OpenStruct.new
+      block.call(config)
+      @options = Hash[config.each_pair.map{ |k,v| [k, v] }]
     end
 
     def options
-      @options ||= {}
+      @options ||= _default_config
     end
 
     def any(whitelist: true)
@@ -39,8 +39,16 @@ module ReservedFor
 
   private
 
-    def default_usernames
+    def _default_usernames
       Set.new(File.open("config/USERNAMES").read.split("\n"))
+    end
+
+    def _default_config
+      {
+        use_default_reserved_list: true,
+        check_plural:              true,
+        case_sensitive:            false,
+      }
     end
   end
 
