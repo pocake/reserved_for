@@ -150,8 +150,8 @@ describe ReservedFor do
       end
       it {
         expect(ReservedFor.fruits.include?('apple')).to be true
-        expect(ReservedFor.fruits.include?('APPLE')).to be true
-        expect(ReservedFor.fruits.include?('Apple')).to be true
+        expect(ReservedFor.fruits.include?('APPLE')).to be false
+        expect(ReservedFor.fruits.include?('Apple')).to be false
       }
     end
 
@@ -164,8 +164,8 @@ describe ReservedFor do
       end
       it {
         expect(ReservedFor.fruits.include?('apple')).to be true
-        expect(ReservedFor.fruits.include?('APPLE')).to be false
-        expect(ReservedFor.fruits.include?('Apple')).to be false
+        expect(ReservedFor.fruits.include?('APPLE')).to be true
+        expect(ReservedFor.fruits.include?('Apple')).to be true
       }
     end
   end
