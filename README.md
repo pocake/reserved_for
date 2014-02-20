@@ -92,19 +92,14 @@ ReservedFor.configure do |config|
 
   # this option require 'active_support'
   config.check_plural              = true  # default: false
-
-  config.case_sensitive            = true  # default: false
 end
 
 
 ReservedFor.usernames.empty?          #=> true
 
 ReservedFor.fruits = %w(apple)
+ReservedFor.fruits.include?('apple')  #=> true
 ReservedFor.fruits.include?('apples') #=> true
-
-ReservedFor.fruits.include?('APPLE')  #=> true
-ReservedFor.fruits.include?('Apples') #=> true
-
 ```
 
 

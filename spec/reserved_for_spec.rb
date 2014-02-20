@@ -139,49 +139,4 @@ describe ReservedFor do
       }
     end
   end
-
-  context 'case sensitive' do
-    context 'enabled' do
-      before do
-        ReservedFor.configure do |config|
-          config.case_sensitive = true
-        end
-        ReservedFor.fruits = %(apple)
-      end
-      it {
-        expect(ReservedFor.fruits.include?('apple')).to be true
-        expect(ReservedFor.fruits.include?('APPLE')).to be false
-        expect(ReservedFor.fruits.include?('Apple')).to be false
-      }
-    end
-
-    context 'disabled' do
-      before do
-        ReservedFor.configure do |config|
-          config.case_sensitive = false
-        end
-        ReservedFor.fruits = %(apple)
-      end
-      it {
-        expect(ReservedFor.fruits.include?('apple')).to be true
-        expect(ReservedFor.fruits.include?('APPLE')).to be true
-        expect(ReservedFor.fruits.include?('Apple')).to be true
-      }
-    end
-  end
-
-  context 'plural and case sensitive' do
-    before do
-      ReservedFor.configure do |config|
-        config.case_sensitive = true
-      end
-      ReservedFor.fruits = %(apple)
-    end
-    it {
-      expect(ReservedFor.fruits.include?('apple')).to be true
-      expect(ReservedFor.fruits.include?('APPLE')).to be true
-      expect(ReservedFor.fruits.include?('apples')).to be true
-      expect(ReservedFor.fruits.include?('APPLES')).to be true
-    }
-  end
 end
