@@ -4,7 +4,6 @@ require 'reserved_for'
 describe ReservedFor do
   context 'default list' do
     before do
-      ReservedFor.clear_all!
       ReservedFor.reset!
     end
 
@@ -49,6 +48,42 @@ describe ReservedFor do
         ReservedFor.clear_all!
         expect(ReservedFor.any).to        be_empty
         expect(ReservedFor.whitelist).to  be_empty
+      end
+    end
+  end
+
+  context 'plural' do
+    context 'enabled' do
+      before do
+        ReservedFor.configure do |config|
+          config.check_plural = true
+        end
+      end
+    end
+
+    context 'disabled' do
+      before do
+        ReservedFor.configure do |config|
+          config.check_plural = false
+        end
+      end
+    end
+  end
+
+  context 'case sensitive' do
+    context 'enabled' do
+      before do
+        ReservedFor.configure do |config|
+          config.case_sensitive = true
+        end
+      end
+    end
+
+    context 'disabled' do
+      before do
+        ReservedFor.configure do |config|
+          config.case_sensitive = false
+        end
       end
     end
   end
