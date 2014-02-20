@@ -6,6 +6,11 @@ module ReservedFor
       @reserved_list_map = { whitelist: Set.new }
     end
 
+    def reset!
+      clear_all!
+      @reserved_list_map[:usernames] = default_usernames
+    end
+
     def any(whitelist: true)
       set  = @reserved_list_map.values.inject(:+)
       set -= @reserved_list_map[:whitelist] if whitelist
@@ -20,8 +25,14 @@ module ReservedFor
         @reserved_list_map[name.to_sym]
       end
     end
+
+  private
+
+    def default_usernames
+      Set.new()
+    end
   end
 
   extend ModuleMethods
-  clear_all!
+  reset!
 end
