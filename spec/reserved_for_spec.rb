@@ -1,4 +1,5 @@
 require "spec_helper"
+require 'reserved_for'
 
 describe ReservedFor do
   before do
