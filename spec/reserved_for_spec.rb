@@ -3,13 +3,9 @@ require 'reserved_for'
 
 describe ReservedFor do
   context 'default list' do
-    before do
-      ReservedFor.reset!
-    end
-
     describe 'default usernames' do
       it 'should includes "index"' do
-        expect(ReservedFor.usernames.include?('index')).to be true
+        expect(ReservedFor.reset!.usernames.include?('index')).to be true
       end
     end
   end

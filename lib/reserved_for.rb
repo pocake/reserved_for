@@ -7,11 +7,13 @@ module ReservedFor
 
     def clear_all!
       @reserved_list_map = { whitelist: Set.new }
+      self
     end
 
     def reset!
       clear_all!
       @reserved_list_map[:usernames] = _default_usernames if options[:use_default_reserved_list]
+      self
     end
 
     def configure(options = {}, &block)
