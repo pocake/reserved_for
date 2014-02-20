@@ -1,5 +1,4 @@
 require "spec_helper"
-require 'reserved_for'
 require 'reserved_for/string_extension'
 
 describe "String" do
@@ -14,5 +13,18 @@ describe "String" do
     it 'alice is reserved' do
       expect('alice'.reserved_for?).to be true
     end
+    it 'foo is not reserved' do
+      expect('foo'.reserved_for?).to be false
+    end
+    it 'david is white_listed' do
+      expect('david'.reserved_for?).to be false
+    end
+  end
+
+  describe '#reserved_for_[defined_list]?' do
+    it 'alice is reserved_for_usernames' do
+      expect('alice'.reserved_for_usernames?).to be true
+    end
+
   end
 end

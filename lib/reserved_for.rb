@@ -15,7 +15,7 @@ module ReservedFor
       when /(.*)=$/
         @reserved_list_map[$1.to_sym] = Set.new(args.flatten)
       else
-        @reserved_list_map[name.to_sym] || Set.new
+        (@reserved_list_map[name.to_sym] || Set.new) - @reserved_list_map[:white_list]
       end
     end
   end

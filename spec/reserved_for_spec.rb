@@ -11,7 +11,7 @@ describe ReservedFor do
 
   describe '.[definded_list]' do
     it 'should return set of reserved word' do
-      expect(ReservedFor.usernames).to eq Set.new(%w(alice bob charlie david))
+      expect(ReservedFor.usernames).to eq Set.new(%w(alice bob charlie))
     end
   end
 
