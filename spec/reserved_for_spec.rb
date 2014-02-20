@@ -9,6 +9,7 @@ describe ReservedFor do
 
   describe '.clear_all!' do
     it 'should clear all reserved list and white list' do
+      expect(ReservedFor.usernames).not_to be_empty
       ReservedFor.clear_all!
       expect(ReservedFor.usernames).to be_empty
     end
