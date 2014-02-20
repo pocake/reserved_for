@@ -22,7 +22,7 @@ module ReservedFor
         .merge(Hash[config.each_pair.map{ |k,v| [k, v] }])
 
       invalid_options = @options.keys - _default_config.keys
-      raise ReservedFor::InvalidOptionError, "#{invalid_options}" if invalid_options.size > 0
+      raise ReservedFor::InvalidOptionError, "invalid options: #{invalid_options}" if invalid_options.size > 0
       @options
     end
 

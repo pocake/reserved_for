@@ -76,6 +76,14 @@ describe ReservedFor do
         case_sensitive:             true,
       })
     end
+
+    it 'raise error for invalid option name' do
+      expect {
+        ReservedFor.configure do |config|
+          config.invalid_option_name_foo = true
+        end
+      }.to raise_error(ReservedFor::InvalidOptionError, 'invalid options: [:invalid_option_name_foo]')
+    end
   end
 
   context 'plural' do
