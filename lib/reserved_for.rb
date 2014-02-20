@@ -1,4 +1,5 @@
 require "reserved_for/version"
+require 'ostruct'
 
 module ReservedFor
   module ModuleMethods
@@ -12,11 +13,13 @@ module ReservedFor
     end
 
     def configure(&block)
+      options = OpenStruct.new
+      result  = block.call(options)
       require 'pry'; binding.pry
     end
 
     def options
-      {}
+      @options ||= {}
     end
 
     def any(whitelist: true)
