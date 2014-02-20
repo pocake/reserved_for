@@ -1,6 +1,6 @@
 # ReservedFor
 
-TODO: Write a gem description
+Make word reserved
 
 ## Installation
 
@@ -18,7 +18,6 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
 
 ## Contributing
 
