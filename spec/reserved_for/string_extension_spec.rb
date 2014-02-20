@@ -19,6 +19,9 @@ describe "String" do
     it 'david is white_listed' do
       expect('david'.reserved_for?).to be false
     end
+    it 'alias reserved_for_any' do
+      expect('david'.reserved_for_any?).to be false
+    end
   end
 
   describe '#reserved_for_[defined_list]?' do
