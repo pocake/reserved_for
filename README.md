@@ -2,6 +2,7 @@
 
 Make word reserved
 
+[![Build Status](https://travis-ci.org/pocake/reserved_for.png?branch=master)](https://travis-ci.org/pocake/reserved_for)
 [![Code Climate](https://codeclimate.com/github/pocake/reserved_for.png)](https://codeclimate.com/github/pocake/reserved_for)
 
 ## Installation
