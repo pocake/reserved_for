@@ -55,21 +55,18 @@ describe ReservedFor do
       end
       expect(ReservedFor.options).to eq({
         use_default_reserved_list:  true,
-        check_plural:               true,
-        case_sensitive:             false,
+        check_plural:               false,
       })
     end
 
     it 'can set config' do
       ReservedFor.configure do |config|
         config.use_default_reserved_list = false
-        config.check_plural              = false
-        config.case_sensitive            = true
+        config.check_plural              = true
       end
       expect(ReservedFor.options).to eq({
         use_default_reserved_list:  false,
-        check_plural:               false,
-        case_sensitive:             true,
+        check_plural:               true,
       })
     end
 

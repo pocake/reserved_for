@@ -1,4 +1,5 @@
 require "reserved_for/version"
+require 'active_support/inflector'
 require 'ostruct'
 
 module ReservedFor
@@ -35,7 +36,11 @@ module ReservedFor
     end
 
     def any(whitelist: true)
-      set  = @reserved_list_map.values.inject(:+)
+      set = @reserved_list_map.map{ |k, v|
+        next v if options[:check_plural]
+        next nil if k =~ /^_plurals_/
+        v
+      }.compact.inject(:+)
       set -= @reserved_list_map[:whitelist] if whitelist
       set
     end
@@ -43,9 +48,14 @@ module ReservedFor
     def method_missing(name, *args)
       case name.to_s
       when /(.*)=$/
-        @reserved_list_map[$1.to_sym] = Set.new(args.flatten)
+        args    = args.flatten
+        plurals = args.map{ |arg| ActiveSupport::Inflector.pluralize(arg) }
+        @reserved_list_map[$1.to_sym]               = Set.new(args)
+        @reserved_list_map["_plurals_#{$1}".to_sym] = Set.new(plurals)
       else
-        @reserved_list_map[name.to_sym]
+        set =  @reserved_list_map[name.to_sym]
+        set += @reserved_list_map["_plurals_#{name.to_s}".to_sym] if options[:check_plural]
+        set
       end
     end
 
@@ -58,8 +68,7 @@ module ReservedFor
     def _default_config
       {
         use_default_reserved_list: true,
-        check_plural:              true,
-        case_sensitive:            false,
+        check_plural:              false,
       }
     end
   end
