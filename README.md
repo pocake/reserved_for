@@ -66,7 +66,7 @@ require 'reserved_for/string' # instead of require 'reserved_for'
 
 whitelist affects `ReservedFor.any` and `String#reserved_for_any?`
 
-```
+```ruby
 require 'reserved_for'
 
 ReservedFor.clear_all!
@@ -83,7 +83,7 @@ ReservedFor.any(whitelist: false).include?('b')       #=> true
 ```
 
 ### Configure
-```
+```ruby
 require 'reserved_for'
 
 ReservedFor.configure do |config|
