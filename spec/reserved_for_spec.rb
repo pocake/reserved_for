@@ -6,7 +6,7 @@ describe ReservedFor do
     ReservedFor.clear_all!
     ReservedFor.usernames    = %w(alice bob charlie david)
     ReservedFor.group_names  = %w(root wheel)
-    ReservedFor.white_list   = %w(david)
+    ReservedFor.whitelist    = %w(david)
   end
 
   describe '.[definded_list]' do
@@ -22,8 +22,11 @@ describe ReservedFor do
   end
 
   describe '.any' do
-    it 'should return all reserved word excluding white_list' do
+    it 'should return all reserved word excluding whitelist' do
       expect(ReservedFor.any).to eq Set.new(%w(alice bob charlie root wheel))
+    end
+    it 'should return all reserved ignoring whitelist' do
+      expect(ReservedFor.any(whitelist: false)).to eq Set.new(%w(alice bob charlie david root wheel))
     end
   end
 
@@ -31,7 +34,7 @@ describe ReservedFor do
     it 'should clear all reserved list and white list' do
       ReservedFor.clear_all!
       expect(ReservedFor.any).to        be_empty
-      expect(ReservedFor.white_list).to be_empty
+      expect(ReservedFor.whitelist).to  be_empty
     end
   end
 end

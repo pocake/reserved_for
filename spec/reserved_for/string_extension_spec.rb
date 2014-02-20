@@ -6,7 +6,7 @@ describe "String" do
     ReservedFor.clear_all!
     ReservedFor.usernames    = %w(alice bob charlie david)
     ReservedFor.group_names  = %w(root wheel)
-    ReservedFor.white_list   = %w(david)
+    ReservedFor.whitelist   = %w(david)
   end
 
   describe '#reserved_for?' do
@@ -16,7 +16,7 @@ describe "String" do
     it 'foo is not reserved' do
       expect('foo'.reserved_for?).to be false
     end
-    it 'david is white_listed' do
+    it 'david is whitelisted' do
       expect('david'.reserved_for?).to be false
     end
     it 'alias reserved_for_any' do

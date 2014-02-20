@@ -3,11 +3,13 @@ require "reserved_for/version"
 module ReservedFor
   module ModuleMethods
     def clear_all!
-      @reserved_list_map = { white_list: Set.new }
+      @reserved_list_map = { whitelist: Set.new }
     end
 
-    def any
-      @reserved_list_map.values.inject(:+) - @reserved_list_map[:white_list]
+    def any(whitelist: true)
+      set  = @reserved_list_map.values.inject(:+)
+      set -= @reserved_list_map[:whitelist] if whitelist
+      set
     end
 
     def method_missing(name, *args)
@@ -15,7 +17,7 @@ module ReservedFor
       when /(.*)=$/
         @reserved_list_map[$1.to_sym] = Set.new(args.flatten)
       else
-        (@reserved_list_map[name.to_sym] || Set.new) - @reserved_list_map[:white_list]
+        @reserved_list_map[name.to_sym]
       end
     end
   end
