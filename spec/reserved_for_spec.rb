@@ -86,13 +86,43 @@ describe ReservedFor do
     end
   end
 
+  context 'use_default_reserved_list' do
+    context 'enabled' do
+      before do
+        ReservedFor.configure do |config|
+          config.use_default_reserved_list = true
+        end
+      end
+      it 'should contain something' do
+        expect(ReservedFor.any).not_to be_empty
+      end
+    end
+
+    context 'disabled' do
+      before do
+        ReservedFor.configure do |config|
+          config.use_default_reserved_list = false
+        end
+      end
+      it 'should be empty' do
+        expect(ReservedFor.any).to be_empty
+      end
+    end
+  end
+
   context 'plural' do
     context 'enabled' do
       before do
         ReservedFor.configure do |config|
           config.check_plural = true
         end
+        ReservedFor.fruits = %(apple)
       end
+
+      it {
+        expect(ReservedFor.fruits.include?('apple')).to be  true
+        expect(ReservedFor.fruits.include?('apples')).to be true
+      }
     end
 
     context 'disabled' do
@@ -100,7 +130,13 @@ describe ReservedFor do
         ReservedFor.configure do |config|
           config.check_plural = false
         end
+        ReservedFor.fruits = %(apple)
       end
+
+      it {
+        expect(ReservedFor.fruits.include?('apple')).to be  true
+        expect(ReservedFor.fruits.include?('apples')).to be false
+      }
     end
   end
 
@@ -110,15 +146,42 @@ describe ReservedFor do
         ReservedFor.configure do |config|
           config.case_sensitive = true
         end
+        ReservedFor.fruits = %(apple)
       end
+      it {
+        expect(ReservedFor.fruits.include?('apple')).to be true
+        expect(ReservedFor.fruits.include?('APPLE')).to be true
+        expect(ReservedFor.fruits.include?('Apple')).to be true
+      }
     end
 
     context 'disabled' do
       before do
+        ReservedFor.fruits = %(apple)
         ReservedFor.configure do |config|
           config.case_sensitive = false
         end
       end
+      it {
+        expect(ReservedFor.fruits.include?('apple')).to be true
+        expect(ReservedFor.fruits.include?('APPLE')).to be false
+        expect(ReservedFor.fruits.include?('Apple')).to be false
+      }
     end
+  end
+
+  context 'plural and case sensitive' do
+    before do
+      ReservedFor.configure do |config|
+        config.case_sensitive = true
+      end
+      ReservedFor.fruits = %(apple)
+    end
+    it {
+      expect(ReservedFor.fruits.include?('apple')).to be true
+      expect(ReservedFor.fruits.include?('APPLE')).to be true
+      expect(ReservedFor.fruits.include?('apples')).to be true
+      expect(ReservedFor.fruits.include?('APPLES')).to be true
+    }
   end
 end
