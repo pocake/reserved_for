@@ -4,6 +4,7 @@ require 'reserved_for'
 describe ReservedFor do
   context 'default list' do
     before do
+      ReservedFor.clear_all!
       ReservedFor.reset!
     end
 
