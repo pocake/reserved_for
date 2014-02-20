@@ -12,6 +12,7 @@ module ReservedFor
 
     def reset!
       clear_all!
+      @options = nil
       @reserved_list_map[:usernames] = _default_usernames if options[:use_default_reserved_list]
       self
     end
