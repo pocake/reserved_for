@@ -2,7 +2,9 @@ require "reserved_for/version"
 require 'ostruct'
 
 module ReservedFor
+  class InvalidOptionError < StandardError; end
   module ModuleMethods
+
     def clear_all!
       @reserved_list_map = { whitelist: Set.new }
     end
@@ -18,6 +20,10 @@ module ReservedFor
       @options = _default_config
         .merge(options)
         .merge(Hash[config.each_pair.map{ |k,v| [k, v] }])
+
+      invalid_options = @options.keys - _default_config.keys
+      raise ReservedFor::InvalidOptionError, "#{invalid_options}" if invalid_options.size > 0
+      @options
     end
 
     def options
