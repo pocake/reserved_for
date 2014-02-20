@@ -14,7 +14,11 @@ module ReservedFor
     def reset!(reset_option: true)
       clear_all!
       @options = nil if reset_option
-      @reserved_list_map[:usernames] = _default_usernames if options[:use_default_reserved_list]
+      if options[:use_default_reserved_list]
+        plurals = _default_usernames.map{ |word| ActiveSupport::Inflector.pluralize(word) }
+        @reserved_list_map[:usernames] = _default_usernames
+        @reserved_list_map[:_plurals_usernames] = Set.new(plurals)
+      end
       self
     end
 
