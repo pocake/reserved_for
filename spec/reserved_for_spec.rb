@@ -157,10 +157,10 @@ describe ReservedFor do
 
     context 'disabled' do
       before do
-        ReservedFor.fruits = %(apple)
         ReservedFor.configure do |config|
           config.case_sensitive = false
         end
+        ReservedFor.fruits = %(apple)
       end
       it {
         expect(ReservedFor.fruits.include?('apple')).to be true
