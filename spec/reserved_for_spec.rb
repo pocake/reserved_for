@@ -12,7 +12,7 @@ describe ReservedFor do
 
   context 'custom list' do
     before do
-      ReservedFor.clear_all!
+      ReservedFor.reset!
       ReservedFor.usernames    = %w(alice bob charlie david)
       ReservedFor.group_names  = %w(root wheel)
       ReservedFor.whitelist    = %w(david)

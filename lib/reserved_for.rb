@@ -54,6 +54,7 @@ module ReservedFor
         @reserved_list_map["_plurals_#{$1}".to_sym] = Set.new(plurals)
       else
         set =  @reserved_list_map[name.to_sym]
+        return nil unless set
         set += @reserved_list_map["_plurals_#{name.to_s}".to_sym] if options[:check_plural]
         set
       end
