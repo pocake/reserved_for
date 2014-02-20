@@ -52,6 +52,32 @@ describe ReservedFor do
     end
   end
 
+  describe '.configure' do
+    it 'has default config' do
+      ReservedFor.configure do |config|
+        # do nothing
+      end
+      expect(ReservedFor.options).to eq({
+        use_default_reserved_list:  true,
+        check_plural:               true,
+        case_sensitive:             false,
+      })
+    end
+
+    it 'can set config' do
+      ReservedFor.configure do |config|
+        config.use_default_reserved_list = false
+        config.check_plural              = false
+        config.case_sensitive            = true
+      end
+      expect(ReservedFor.options).to eq({
+        use_default_reserved_list:  false,
+        check_plural:               false,
+        case_sensitive:             true,
+      })
+    end
+  end
+
   context 'plural' do
     context 'enabled' do
       before do
