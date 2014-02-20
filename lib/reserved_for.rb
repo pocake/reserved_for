@@ -10,9 +10,9 @@ module ReservedFor
       self
     end
 
-    def reset!
+    def reset!(reset_option: true)
       clear_all!
-      @options = nil
+      @options = nil if reset_option
       @reserved_list_map[:usernames] = _default_usernames if options[:use_default_reserved_list]
       self
     end
@@ -26,7 +26,7 @@ module ReservedFor
 
       invalid_options = @options.keys - _default_config.keys
       raise ReservedFor::InvalidOptionError, "invalid options: #{invalid_options}" if invalid_options.size > 0
-      reset!
+      reset!(reset_option: false)
       self
     end
 
