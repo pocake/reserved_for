@@ -29,7 +29,7 @@ module ReservedFor
   private
 
     def default_usernames
-      Set.new(%w(foo bar baz index))
+      Set.new(File.open("config/USERNAMES").read.split("\n"))
     end
   end
 
