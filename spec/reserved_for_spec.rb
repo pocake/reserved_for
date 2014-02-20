@@ -9,7 +9,6 @@ describe ReservedFor do
 
   describe '.clear_all!' do
     it 'should clear all reserved list and white list' do
-      require 'pry'; binding.pry
       ReservedFor.clear_all!
       expect(ReservedFor.usernames).to be_empty
     end
