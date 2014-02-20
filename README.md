@@ -21,7 +21,7 @@ Or install it yourself as:
 ### with default username list
 `ReservedFor.usernames` is mostly based on [知見 - 登録されるとつらいユーザー名リスト - Qiita](http://qiita.com/phimcall/items/4c559b70f70ea7f1953b)
 
-thanks! @phimcall
+thanks! [@phimcall](https://github.com/phimcall)
 
 ```ruby
 require 'reserved_for'
