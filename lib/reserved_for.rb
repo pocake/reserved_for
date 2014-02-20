@@ -11,6 +11,14 @@ module ReservedFor
       @reserved_list_map[:usernames] = default_usernames
     end
 
+    def configure(&block)
+      require 'pry'; binding.pry
+    end
+
+    def options
+      {}
+    end
+
     def any(whitelist: true)
       set  = @reserved_list_map.values.inject(:+)
       set -= @reserved_list_map[:whitelist] if whitelist
