@@ -15,7 +15,9 @@ module ReservedFor
     def configure(options = {}, &block)
       config = OpenStruct.new
       block.call(config)
-      @options = Hash[config.each_pair.map{ |k,v| [k, v] }]
+      @options = _default_config
+        .merge(options)
+        .merge(Hash[config.each_pair.map{ |k,v| [k, v] }])
     end
 
     def options
