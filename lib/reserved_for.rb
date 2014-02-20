@@ -29,7 +29,7 @@ module ReservedFor
   private
 
     def default_usernames
-      Set.new()
+      Set.new(%w(foo bar baz index))
     end
   end
 
