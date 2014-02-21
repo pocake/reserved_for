@@ -67,7 +67,7 @@ module ReservedFor
   private
 
     def _default_usernames
-      Set.new(File.open("config/USERNAMES").read.split("\n"))
+      Set.new(File.open("#{__dir__}/../config/USERNAMES").read.split("\n"))
     end
 
     def _default_config
